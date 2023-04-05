@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line chart with dates & limit</title>
+</head>
+
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+
+                datasets: [
+                    {
+                        label: 'Limit',
+                        data: [{
+                                x: '2023-04-06',
+                                y: 1000
+                            },
+                            {
+                                x: '2024-04-27',
+                                y: 1000
+                            },
+                        ],
+                        fill: 'none',
+                        borderWidth: 2,
+                        borderColor: ['rgba(255,0,0,1)'],
+                        borderDash: [12]
+                    },
+                    
+                    {
+                        label: 'Operation 1',
+                        data: [{
+                                x: '2023-04-06',
+                                y: 100
+                            },
+                            {
+                                x: '2023-04-09',
+                                y: 100
+                            },
+                        ]
+                    },
+                    {
+                        label: 'Operation 2',
+                        data: [{
+                                x: '2023-04-15',
+                                y: 200
+                            },
+                            {
+                                x: '2023-04-27',
+                                y: 200
+                            },
+                        ]
+                    },
+                    {
+                        label: 'Operation 3',
+                        data: [{
+                                x: '2024-04-15',
+                                y: 200
+                            },
+                            {
+                                x: '2024-04-27',
+                                y: 200
+                            },
+                        ]
+                    }
+                ]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                            tooltipFormat: 'dd.MM.yyyy'
+                        },
+                        min: new Date().valueOf(),
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                borderWidth: 2,
+                backgroundColor: ['rgba(255,50,100,0.5)'],
+                fill: 'origin'
+            }
+        });
+    </script>
+</body>
+
+</html>
